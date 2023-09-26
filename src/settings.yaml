@@ -1,0 +1,85 @@
+data:
+  raw: ../data/raw
+  tsv: ../data/tsv
+  metadata: ../data/external/Master_List.xlsx
+  ecs: ../data/csv/ecs
+  pwy: ../data/csv/pwy
+  tax: ../data/csv/tax
+  master_tax: ../data/processed/master_tax.csv
+  ecs_filename: ecs_data.csv
+  pwy_filename: pwy_data.csv
+  tax_filename: tax_data.csv
+  agg: ../data/processed/agg
+  agg_ecs: ../data/agg/ecs
+  agg_pwy: ../data/agg/pwy
+  agg_tax: ../data/agg/tax
+  genus_cleaned: ../data/processed
+
+kg:
+  input: ./data/out
+  queries: ./data/kg/queries
+  neo4j:
+    uri: bolt://localhost:7687
+    user: neo4j
+    pw: 1qazXSW@
+    db: final
+    import_folder: /home/sha/.config/Neo4j Desktop/Application/relate-data/dbmss/dbms-c7db64bb-a3cf-43a4-af5c-7438bcb4790d/import/data
+
+preprocess:
+  ecs: 1
+  pwy: 1
+  tax: 1
+  no_aggregation: false
+
+aggregation:
+  # agg_function: [count, size, sum, mean, average, std, var, sem, describe, min, max, first, last, nth]
+  # see https://sparkbyexamples.com/pandas/pandas-aggregate-functions-with-examples/
+  # TODO: look into agg_function argumentens, e.g. for nth or potential custom functions
+  agg_functions:
+    - mean
+    - std
+  agg_on_fields:
+    - age_group
+  ecs_fields:
+    - Enzyme
+    - Genus
+  tax_fields:
+    - Genus
+  pwy_fields:
+    - PWY
+    - Genus
+  data_modification:
+    grouping:
+      - property: Age # the property to group
+        name: age_group # name of the new grouped column
+        ungrouped_name: ungrouped # value of new grouped column if no group applies
+        collect_file: ./data/csv/age_groups.csv # csv file to store collected data in
+        collect_data:
+          # define fields that are not part of the aggregation but which should be stored, e.g. for creating group nodes
+          - collect_field: Visit_number
+            collect_in: visit_number_coll
+          - collect_field: Visit_ID
+            collect_in: visit_id_coll
+          - collect_field: Subject_ID
+            collect_in: subject_id_coll
+        groups:
+          # define the groups and the limits numerical values to assign the groups
+          - lower_limit:
+            upper_limit: 21
+            group_name: young
+          - lower_limit: 22
+            upper_limit: 39
+            group_name: medium
+          - lower_limit: 40
+            upper_limit:
+            group_name: old
+    agg_coefficients:
+      - property: Age
+        # comparison = [lt, le, eq, ne, ge, gt] - same as object comparison functions: https://docs.python.org/3/library/operator.html
+        comparison: eq
+        value: 20
+        coefficient: 100
+      - property: Age
+        comparison: gt
+        value: 40
+        coefficient: 0.01
