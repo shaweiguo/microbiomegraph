@@ -38,7 +38,7 @@ def download(url, tsv_path):
                 header_key="taxonomy", header_value="taxonomy", direct_io=f
             )
         
-        logger.info('{url} download complete.')
+        logger.info(f'{url} download complete.')
         
     except Exception as e:
-        logger.error(f"\nException in download_url() for {url}:", e)
+        logger.error(f"\nException in download() for {url}:", e)
