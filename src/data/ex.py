@@ -1,8 +1,12 @@
 import multiprocessing as mp
 from loguru import logger
-import threading, queue
+import threading
+import queue
 import concurrent.futures
 import os
+import time
+import random
+
 
 def task(n):
     """
@@ -11,6 +15,7 @@ def task(n):
     print(f"Task {n} is running on process {os.getpid()}")
     total = sum(range(n))
     return total
+
 
 def main_process(start, end):
     """
@@ -22,6 +27,7 @@ def main_process(start, end):
 
     print(f'Process {os.getpid()} finished, results: {results}')
     return results
+
 
 def distribute_tasks(total_tasks, num_processes):
     """
@@ -40,7 +46,6 @@ def ex_parallel():
 
 
 def f(s):
-    import time, random
     time.sleep(random.random())
     return s + s
 
@@ -133,12 +138,15 @@ class Worker(threading.Thread):
 
 
 def ex_work():
-    import time, random, operator
+    import operator
     request_quue = queue.Queue()
     result_queue = queue.Queue()
 
     number_of_workers = 3
-    workers = [Worker(request_quue, result_queue) for _ in range(number_of_workers)]
+    workers = [
+        Worker(request_quue, result_queue)
+        for _ in range(number_of_workers)
+    ]
     work_requests = {}
 
     operations = {
