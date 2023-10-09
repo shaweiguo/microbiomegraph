@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2023-10-08T00:31:08.057Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="9_QXzYhpldyvV3sQxdsK" version="21.7.5" type="device">
+<mxfile host="Electron" modified="2023-10-07T13:49:39.998Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="fXQVF6zwHekQW5P_CUVq" version="22.0.2" type="device">
   <diagram id="6a731a19-8d31-9384-78a2-239565b7b9f0" name="Page-1">
     <mxGraphModel dx="1114" dy="1027" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
       <root>
@@ -247,52 +247,52 @@
         <mxCell id="55" value="no" style="text;fontStyle=0;html=1;strokeColor=none;gradientColor=none;fillColor=none;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="235" y="1624" width="40" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-55" value="download biom file&lt;br&gt;input: url;&lt;br&gt;output: biom content;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientDirection=north;fontStyle=0;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;shadow=1;fontColor=#ffffff;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-55" value="download biom file&lt;br&gt;input: url;&lt;br&gt;output: biom content;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="426" y="130" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-56" value="transform to tsv format&lt;br&gt;input: biom file path;&lt;br&gt;output: tsv content;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-56" value="transform to tsv format&lt;br&gt;input: biom file path;&lt;br&gt;output: tsv content;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="620" y="130" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-57" value="get all tsv files" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-57" value="get all tsv files" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="714.5" y="260" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-58" value="save biom file&lt;br&gt;input: biom content,&lt;br&gt;biom dir;&lt;br&gt;output: biom file path;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientDirection=north;fontStyle=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-58" value="save biom file&lt;br&gt;input: biom content,&lt;br&gt;biom dir;&lt;br&gt;output: biom file path;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="560" y="30" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-59" value="save tsv file&lt;br&gt;input: tsv content;&lt;br&gt;output: tsv file path;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientDirection=north;fontStyle=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-59" value="save tsv file&lt;br&gt;input: tsv content;&lt;br&gt;output: tsv file path;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="750" y="30" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-60" value="find pathway files&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-60" value="find pathway files&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="710" y="400" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-61" value="process pathway file&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-61" value="process pathway file&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="920" y="400" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-62" value="find ecs files&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-62" value="find ecs files&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="710" y="530" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-63" value="process ecs file&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-63" value="process ecs file&amp;nbsp;" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="920" y="530" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-64" value="process taxon file" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-64" value="process taxon file" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="710" y="660" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-65" value="process taxon file" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-65" value="process taxon file" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="920" y="660" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-66" value="clean genus" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-66" value="clean genus" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="710" y="790" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-67" value="merge master tax" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-67" value="merge master tax" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="710" y="910" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-68" value="tax aggregation" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-68" value="tax aggregation" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="540" y="1020" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-69" value="generate cypher scripts" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-69" value="generate cypher scripts" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="930" y="910" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z2zRl1oUMmGLYD1vkWgI-70" value="tax transform" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" parent="1" vertex="1">
+        <mxCell id="z2zRl1oUMmGLYD1vkWgI-70" value="tax transform" style="shape=mxgraph.flowchart.data;strokeWidth=2;gradientColor=none;gradientDirection=north;fontStyle=0;html=1;" vertex="1" parent="1">
           <mxGeometry x="731" y="1020" width="159" height="80" as="geometry" />
         </mxCell>
       </root>

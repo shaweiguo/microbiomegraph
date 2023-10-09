@@ -195,8 +195,98 @@ def ex_work():
         show_results()
 
 
+def cube(x):
+    curr_thread = threading.current_thread()
+    time.sleep(x)
+    return f"{curr_thread.name}_{x}", pow(x, 3)
+
+
+def ex01():
+    pool = concurrent.futures.ThreadPoolExecutor(
+        max_workers=5, thread_name_prefix="cube"
+    )
+    futures = []
+    for i in range(1, 11):
+        futures.append(pool.submit(cube, i))
+    logger.info(f"Results: {[future.result() for future in futures]}")
+    pool.shutdown()
+
+
+def ex02():
+    futures = []
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=5, thread_name_prefix="cube"
+    ) as pool:
+        for i in range(1, 11):
+            futures.append(pool.submit(cube, i))
+        logger.info(f"Results: {[future.result() for future in futures]}")
+
+
+def ex03():
+    futures = []
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=5, thread_name_prefix="cube"
+    ) as pool:
+        for i in range(1, 11):
+            f = pool.submit(cube, i)
+            f.name = f"F-{i}"
+            futures.append(f)
+        logger.info(f"submitted all tasks to pool."
+                    f" let's sleep for 3 seconds"
+                     f" and then cancel pending tasks.")
+        time.sleep(3)
+        for i, future in enumerate(futures):
+            if not future.running():
+                logger.info(f"Task ({future.name}) has not stated yet."
+                            f" We can cancel it...")
+                cancelled = future.cancel()
+                if cancelled:
+                    logger.info(f"Task ({future.name}) cancelled:"
+                                f" {future.cancelled()}")
+        completed = [future.result() for future in futures
+                      if not future.cancelled()]
+        logger.info(f"{len(completed)} futures completed successfully.")
+        logger.info(f"Results: {completed}")
+        logger.info(f"{len(futures) - len(completed)} futures cancelled.")
+
+
+def done(future):
+    logger.info(f"{future.name} completed.")
+
+
+def ex_done_callback():
+    futures = []
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=5, thread_name_prefix="cube"
+    ) as pool:
+        for i in range(1, 11):
+            f = pool.submit(cube, i)
+            f.name = f"F-{i}"
+            f.add_done_callback(done)
+            futures.append(f)
+    logger.info(f"Results: {[future.result() for future in futures]}")
+
+
+def producer(in_q, out_q):
+    item = in_q.get()
+    item += item + random.randint(1, 10)
+    out_q.put(item)
+    logger.info(f'Producer: adding {item} to out queue')
+
+
+def consumer(in_q, out_q):
+    item = in_q.get()
+    in_q.task_done()
+    out_q.put(item + " consumed")
+    logger.info(f'Consumer: consuming {item} from in queue')
+
+
+
+
+
 def main():
-    ex_work()
+    # ex_work()
+    ex_done_callback()
 
 
 if __name__ == "__main__":
