@@ -197,8 +197,26 @@ def biom_download(in_queue, out_queue):
     # CSV_QUEUE = queue.Queue()
     get_urls(MASTER_LIST_FILE_PATH, URLS_QUEUE)
     # logger.info(f"{urls}")
-    download(DOWNLOAD_THREADS, URLS_QUEUE, BIOM_QUEUE)
-    save_biom(SAVE_THREADS, BIOM_QUEUE, TSV_QUEUE, BIOM_DIR)
+    
+    def download_biom(url, biom_queue):
+        import requests
+        req = requests.get(url)
+        biom_queue.put({'url': url, 'biom': req.content})
+        # with open(os.path.join(biom_dir, get_file_name(url)), "wb") as f:
+        #     f.write(req.content)
+        return {"status": "ok", "url": url}
+    
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=DOWNLOAD_THREADS, thread_name_prefix="download"
+    ) as executor:
+        futures = {
+            executor.submit(download_biom, url, BIOM_QUEUE):
+            url for url in URLS_QUEUE}
+        for future in concurrent.futures.as_completed(futures):
+            result = future.result()
+            out_queue.put(result)
+    # download(DOWNLOAD_THREADS, URLS_QUEUE, BIOM_QUEUE)
+    # save_biom(SAVE_THREADS, BIOM_QUEUE, TSV_QUEUE, BIOM_DIR)
     request_queue = queue.Queue()
     result_queue = queue.Queue()
 
