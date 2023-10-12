@@ -1,0 +1,12 @@
+app:
+  name: microbiome_collect
+  version: 1.0
+parallel:
+  download: 5
+  store: 3
+data:
+  master_list: /home/sha/work/microbiome_data/meta/Master_List.xlsx
+  dir:
+    biom: ./tmp/biom
+    tsv: ./tmp/tsv
+    csv: ./tmp/csv

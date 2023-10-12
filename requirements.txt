@@ -12,6 +12,7 @@ dramatiq[redis, watch]
 biom-format
 typer[all]
 dynaconf[all]
+pynput
 loguru
 requests
 aiohttp

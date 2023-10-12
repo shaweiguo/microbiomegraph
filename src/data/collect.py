@@ -7,6 +7,8 @@ import re
 import pandas as pd
 import requests
 from biom import load_table as load_biom
+from pynput import keyboard
+from config import settings
 
 
 def get_file_name(url):
@@ -119,18 +121,20 @@ def csv_transform_manager(num, csv_dir, in_queue, out_queue):
             future.add_done_callback(done)
 
 
-def main():
-    MASTER_LIST_FILE_PATH = '/home/sha/work/microbiome/data/meta/Master_List.xlsx'
-    BIOM_DIR = './tmp/biom'
-    TSV_DIR = './tmp/tsv'
-    CSV_DIR = './tmp/csv'
-    DOWNLOAD_THREADS = 5
-    SAVE_THREADS = 3
+def collect():
+    MASTER_LIST_FILE_PATH = settings.data.master_list
+    BIOM_DIR = settings.data.dir.biom
+    TSV_DIR = settings.data.dir.tsv
+    CSV_DIR = settings.data.dir.csv
+    DOWNLOAD_THREADS = settings.parallel.download
+    SAVE_THREADS = settings.parallel.store
+
     URL_QUEUE = queue.Queue()
     DOWNLOAD_QUEUE = queue.Queue()
     BIOM_QUEUE = queue.Queue()
     TSV_QUEUE = queue.Queue()
     CSV_QUEUE = queue.Queue()
+
     get_urls(MASTER_LIST_FILE_PATH, URL_QUEUE)
 
     downloader = threading.Thread(
@@ -158,6 +162,63 @@ def main():
     tsv_transformer.join()
     csv_transformer.join()
     logger.info("all done.")
+
+
+def on_release(key):
+    logger.info(f'{key} released')
+    if key == keyboard.Key.esc:
+        # Stop listener
+        return False
+
+
+def collect_with_esc_exit():
+    MASTER_LIST_FILE_PATH = '/home/sha/work/microbiome_data/meta/Master_List.xlsx'
+    BIOM_DIR = './tmp/biom'
+    TSV_DIR = './tmp/tsv'
+    CSV_DIR = './tmp/csv'
+    DOWNLOAD_THREADS = 5
+    SAVE_THREADS = 3
+    URL_QUEUE = queue.Queue()
+    DOWNLOAD_QUEUE = queue.Queue()
+    BIOM_QUEUE = queue.Queue()
+    TSV_QUEUE = queue.Queue()
+    CSV_QUEUE = queue.Queue()
+    get_urls(MASTER_LIST_FILE_PATH, URL_QUEUE)
+
+    with keyboard.Listener(on_release=on_release) as listener:
+        downloader = threading.Thread(
+            target=download_manager,
+            args=(DOWNLOAD_THREADS, URL_QUEUE, DOWNLOAD_QUEUE))
+        downloader.start()
+
+        biom_saver = threading.Thread(
+            target=biom_save_mamager,
+            args=(SAVE_THREADS, BIOM_DIR, DOWNLOAD_QUEUE, BIOM_QUEUE))
+        biom_saver.start()
+
+        tsv_transformer = threading.Thread(
+            target=tsv_transform_manager,
+            args=(SAVE_THREADS, TSV_DIR, BIOM_QUEUE, TSV_QUEUE))
+        tsv_transformer.start()
+
+        csv_transformer = threading.Thread(
+            target=csv_transform_manager,
+            args=(SAVE_THREADS, CSV_DIR, TSV_QUEUE, CSV_QUEUE))
+        csv_transformer.start()
+
+        downloader.join()
+        biom_saver.join()
+        tsv_transformer.join()
+        csv_transformer.join()
+
+        listener.join()
+
+        logger.info("all done.")
+
+
+def main():
+    collect()
+    # collect_with_esc_exit()
 
 
 if __name__ == '__main__':
